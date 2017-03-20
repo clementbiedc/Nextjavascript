@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>dev js - session 1</title>
+		<style>
+			.block {
+				height: 24px;
+				background: silver;
+				margin-bottom: 3px;
+				cursor: pointer;
+			}
+			.block.active {
+				background: orange;
+			}
+		</style>
+		<script>
+			function log(val) {
+				"use strict";
+				window.console.log(val);
+			}
+			
+			function displayTextBox(msg) {
+				"use strict";
+				window.alert(msg);
+			}
+			
+			function ecrireSurUneLigne(msg1, msg2) {
+				"use strict";
+				log(msg1 + " " + msg2);
+			}
+			
+			function entrainementIfElse() {
+				"use strict";
+				var toto = true && false;
+				if (1 < 0) {
+					log("pas bon en math");
+				} else if (toto) {
+					log("badaboom");
+				} else {
+					log("dans le else ...");
+				}
+			}
+			
+			function multiply(a, b) {
+				"use strict";
+				var result = a * b;
+				
+				if (isNaN(result)) {
+					result = "erreur calcul";
+					window.alert(result);
+				} 
+				
+				return result;
+			}
+			
+			function gererLesClicks() {
+				log('clicked');
+				log(this);
+				this.classList.toggle("active");
+			}
+			
+			function easyDOM() {
+				var i, parag, divs;
+				parag = document.querySelector("#exo_5 p");
+				divs = document.querySelectorAll("#exo_5 .block");
+				// log(divs); // toutes les divs de class block dans #exo5
+				parag.innerHTML = "";
+				for (i = 0;i < divs.length; i += 1) {
+					divs[i].onclick = gererLesClicks;
+					// ci-dessus pas de parenthèses sur la fonction =>
+					// exec au click seulement
+					parag.innerHTML += divs[i].id + "<br>";
+				}
+			}
+			
+			
+			function entrainementDOM() {
+				"use strict";
+				// selectionner des éléments dans le document HTML ...
+				var eleUnique, elePremier, eleList;
+				eleUnique = document.getElementById("mon_parag");
+				elePremier = document.querySelector(".active");
+				eleList = document.querySelectorAll("li");
+
+				log(eleUnique);
+				log(typeof elePremier);
+				log(typeof eleList);
+			}
+			
+			window.onload = function () {
+				//entrainementDOM();
+				easyDOM() 
+			};
+			
+
+			/* var res = multiply(10, 2);
+			log(res);
+			res = multiply("truc", 2);
+			log(res); */
+			
+			
+			// displayTextBox("hello");
+			// displayTextBox("world");
+			// ecrireSurUneLigne("ici", "c'est Paris !");
+			// ecrireSurUneLigne("c'est une belle journée", "pour apprendre JS !");
+			// entrainementIfElse();
+		</script>
+	</head>
+	<body>
+		<h1 class="title">dev js - session 1</h1>
+		<p id="mon_parag" class="truc et machin">guillaume.amangoua@gmail.com</p>
+		<p>
+			déclarer des fonctions <span class="easy">simples</span>,<br>
+			les exécuter et...<br>
+			comprendre return
+		</p>
+		<ul class="active">
+			<li class="active">home</li>
+			<li>about</li>
+			<li>contact</li>
+		</ul>
+		<div><p></p></div>
+		<div id="exo_5">
+			<div class="blocks">
+				<div id="block1" class="block">a</div>
+				<div id="block2" class="block">b</div>
+				<div id="block3" class="block">c</div>
+				<div id="block4" class="block">d</div>
+				<div id="block5" class="block">e</div>
+			</div>
+			<p>
+				afficher l'id des divs ici avec une boucle ...
+			</p>
+		</div>
+
+		
+	</body>
+</html>
+
+
+
